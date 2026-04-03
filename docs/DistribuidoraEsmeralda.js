@@ -11,6 +11,10 @@ X,
 Gem
 } from "lucide-react";
 
+import imgJoao from './imagens_lp/joao_vitor.png';
+import imgEllen from './imagens_lp/ellen.png';
+import imgKarol from './imagens_lp/karol.png';
+
 /**
  * Componente para lidar com falhas no carregamento de imagens
  */
@@ -48,12 +52,12 @@ export default function LandingPage() {
 const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 // --- MOCK DATA ---
-const products = [
+const produtos = [
     {
         name: "Inspiração miu-miu",
         material: "Acetato",
         detail: "Design sofisticado modinha",
-        image: "https://i.imgur.com/8ki6XnH.jpg"
+        image: "./imagens_lp/oculos_miumiu.png"
     },
     {
         name: "Linha Comfort Grau",
@@ -77,7 +81,7 @@ const products = [
         name: "Linha Fashion Moda",
         material: "Acetato Italiano",
         detail: "Design e proteção UV400 para garantir o ticket médio alto da sua vitrine.",
-        image: "https://i.imgur.com/NliYHS2.jpg"
+        image: "./imagens_lp/linha_fashion.png"
     },
     {
         name: "Linha Clipon",
@@ -87,21 +91,21 @@ const products = [
     }
 ];
 
-const testimonials = [
+const depoimentos = [
     {
-        text: "Eu gostei bastante do seu atendimento, e das negociações, a variedade dos produtos e também me agrada bastante, fico sempre surpreendido com os brindes que vem na compra e claro, o comprometimento que tem com o cliente.",
+        image: imgJoao,
         name: "João Victor",
         role: "",
         location: ""
     },
     {
-        image: "https://i.imgur.com/HrnMbim.jpg",
+        image: imgEllen,
         name: "Ellen",
         role: "",
         location: ""
     },
     {
-        image: "https://i.imgur.com/2AaBIsg.jpg",
+        image: imgKarol,
         name: "Karol",
         role: "",
         location: ""
@@ -288,20 +292,27 @@ return (
                     ))}
                 </div>
 
-                {/* Video / Stats */}
-                <div className="bg-[#1B5E20] rounded-3xl p-8 text-center text-white mt-20">
-                    <p className="text-xl mb-4">
-                        São mais de <b>1500 modelos</b> e <b>9 mil opções</b> em estoque.
-                    </p>
-                    <p className="text-lg text-[#A5D6A7] font-semibold mb-8">Mais de 10 anos de mercado.</p>
-                    <div className="max-w-2xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl bg-black/20">
-                        <video className="w-full h-full object-cover" controls preload="metadata">
-                            <source src="https://i.imgur.com/8ki6XnH.mp4" type="video/mp4" />
-                            Seu navegador não suporta vídeos.
-                        </video>
+               {/* Video / Stats */}
+                <div className="flex flex-col items-center justify-center w-full mt-20 px-4">
+                     <div className="bg-[#1B5E20] rounded-3xl p-8 text-center text-white w-full max-w-4xl shadow-xl flex flex-col items-center">
+                        <p className="text-xl mb-4">
+                            São mais de <b>1500 modelos</b> e <b>9 mil opções</b> em estoque.
+                        </p>
+                        <p className="text-lg text-[#A5D6A7] font-semibold mb-8">Mais de 10 anos de mercado.</p>
+                        
+                        <div className="w-full aspect-video rounded-xl overflow-hidden shadow-2xl bg-black">
+                            <iframe 
+                                className="w-full h-full"
+                                src="https://www.youtube.com/embed/2d6ha9SCsOM" 
+                                title="YouTube video player" 
+                                frameBorder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerPolicy="strict-origin-when-cross-origin" 
+                                allowFullScreen>
+                            </iframe>
+                        </div>
                     </div>
                 </div>
-            </div>
         </section>
 
         {/* PURCHASE GUIDE */}
@@ -339,26 +350,27 @@ return (
         </section>
 
         {/* TESTIMONIALS */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-            <div className="max-w-7xl mx-auto text-center mb-16">
-                <h2 className="text-3xl font-bold text-gray-900">O que dizem nossos parceiros</h2>
+<section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div className="max-w-7xl mx-auto text-center mb-16">
+        <h2 className="text-3xl font-bold text-gray-900">O que dizem nossos parceiros</h2>
+    </div>
+    <div className="grid md:grid-cols-3 gap-8">
+        {depoimentos.map((t, i) => ( // Use 'depoimentos' aqui
+            <div key={i} className="bg-gray-50 p-8 rounded-2xl border border-gray-100 italic relative">
+                 <div className="flex mb-4">
+                        {[...Array(5)].map((_, star) => <Gem key={star} className="w-4 h-4 text-[#1B5E20] fill-[#1B5E20] mr-1" />)}
+                 </div>
+                 {/* Esta é a linha principal: */}
+                 {t.image ? (
+                     <ImageWithFallback src={t.image} alt={t.name} className="w-full rounded-lg mb-4" />
+                 ) : (
+                     <p className="text-gray-700 mb-4">"{t.text}"</p>
+                 )}
+                 <p className="font-bold text-gray-900 not-italic">— {t.name}</p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-                {testimonials.map((t, i) => (
-                    <div key={i} className="bg-gray-50 p-8 rounded-2xl border border-gray-100 italic relative">
-                         <div className="flex mb-4">
-                                {[...Array(5)].map((_, star) => <Gem key={star} className="w-4 h-4 text-[#1B5E20] fill-[#1B5E20] mr-1" />)}
-                         </div>
-                         {t.image ? (
-                             <ImageWithFallback src={t.image} alt={t.name} className="w-full rounded-lg mb-4" />
-                         ) : (
-                             <p className="text-gray-700 mb-4">"{t.text}"</p>
-                         )}
-                         <p className="font-bold text-gray-900 not-italic">— {t.name}</p>
-                    </div>
-                ))}
-            </div>
-        </section>
+        ))}
+    </div>
+</section>
 
         {/* FOOTER */}
         <footer id="suporte" className="bg-gray-900 text-white pt-16 pb-8 px-4">
