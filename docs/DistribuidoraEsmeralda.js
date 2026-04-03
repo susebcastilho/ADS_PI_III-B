@@ -11,10 +11,6 @@ X,
 Gem
 } from "lucide-react";
 
-import imgJoao from './imagens_lp/joao_vitor.png';
-import imgEllen from './imagens_lp/ellen.png';
-import imgKarol from './imagens_lp/karol.png';
-
 /**
  * Componente para lidar com falhas no carregamento de imagens
  */
@@ -93,19 +89,19 @@ const produtos = [
 
 const depoimentos = [
     {
-        image: imgJoao,
+        image: ./imagens_lp/joao_vitor.png,
         name: "João Victor",
         role: "",
         location: ""
     },
     {
-        image: imgEllen,
+        image: ./imagens_lp/ellen.png,
         name: "Ellen",
         role: "",
         location: ""
     },
     {
-        image: imgKarol,
+        image: ./imagens_lp/karol.png,
         name: "Karol",
         role: "",
         location: ""
@@ -300,19 +296,13 @@ return (
                         </p>
                         <p className="text-lg text-[#A5D6A7] font-semibold mb-8">Mais de 10 anos de mercado.</p>
                         
-                        <div className="w-full aspect-video rounded-xl overflow-hidden shadow-2xl bg-black">
-                            <iframe 
-                                className="w-full h-full"
-                                src="https://www.youtube.com/embed/2d6ha9SCsOM" 
-                                title="YouTube video player" 
-                                frameBorder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                referrerPolicy="strict-origin-when-cross-origin" 
-                                allowFullScreen>
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
+                        <div class="max-w-3xl mx-auto mt-8">
+                    <div class="aspect-video rounded-xl overflow-hidden shadow-lg bg-gray-100">
+                     <video class="w-full h-full object-contain" controls preload="metadata">
+                        <source src="videoesmeralda.mp4" type="video/mp4">
+                         </video>
+                 </div>
+            </div>
         </section>
 
         {/* PURCHASE GUIDE */}
